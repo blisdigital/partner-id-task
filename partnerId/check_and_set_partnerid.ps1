@@ -1,6 +1,15 @@
 [CmdletBinding()]
 param()
 
+# Import VstsTask module
+$modulePath = Join-Path $PSScriptRoot "ps_modules\VstsTaskSdk\VstsTaskSdk.psd1"
+if (Test-Path $modulePath) {
+    Import-Module $modulePath -Verbose
+} else {
+    Write-Error "VstsTaskSdk.psd1 not found at $modulePath"
+    exit 1
+}
+
 # Get input from task
 $partnerId = Get-VstsInput -Name "partnerId" -Require
 
