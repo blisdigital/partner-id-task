@@ -9,6 +9,7 @@
     "author": "",
     "license": "MIT",
     "dependencies": {
-        "azure-pipelines-task-lib": "^3.1.0"
+        "azure-pipelines-task-lib": "^3.1.0",
+        "azure-devops-extension-sdk": "^3.1.0"
     }
 }
