@@ -1,25 +1,25 @@
 {
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-    "id": "partner-id-task",
+    "id": "a30ab35c-ef4b-4ddc-af2e-9d9d016ce976",
     "name": "PartnerIdTask",
-    "friendlyName": "Set Microsoft Partner ID (MPN ID)",
-    "description": "Sets or updates the Microsoft Partner ID (MPN ID) for ARM deployments",
+    "friendlyName": "Set Microsoft Partner ID (MPN ID) for Partner Admin Link (PAL) of a Service Principal",
+    "description": "Sets or updates the Microsoft Partner ID (MPN ID) for Partner Admin Link (PAL). For usage in Bicep/ARM deployments",
     "helpMarkDown": "Task requires Azure CLI to be installed on the agent",
     "category": "Deploy",
-    "author": "Your Name",
+    "author": "Blis Digital",
     "version": {
         "Major": 1,
         "Minor": 0,
         "Patch": 0
     },
-    "instanceNameFormat": "Set Partner ID",
+    "instanceNameFormat": "Set Microsoft Partner ID (MPN ID)",
     "inputs": [
         {
             "name": "partnerId",
             "type": "string",
             "label": "Partner ID",
             "required": true,
-            "helpMarkDown": "The Partner ID (6-8 digits) to set for ARM deployments"
+            "helpMarkDown": "The Microsoft Partner ID (MPN ID) (6-8 digits) to set for ARM deployments"
         }
     ],
     "execution": {

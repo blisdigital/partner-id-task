@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "partner-id-task",
-    "name": "Microsoft Partner ID (MPN ID) Task",
+    "name": "Set your Microsoft Partner ID (MPN ID) Task",
     "version": "1.0.0",
     "publisher": "your-publisher",
     "targets": [
