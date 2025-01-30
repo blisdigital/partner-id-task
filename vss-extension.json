@@ -19,6 +19,10 @@
     "files": [
         {
             "path": "partnerId"
+        },
+        {
+            "path": "partnerId/ps_modules/VstsTaskSdk",
+            "packagePath": "partnerId/ps_modules/VstsTaskSdk"
         }
     ],
     "contributions": [
