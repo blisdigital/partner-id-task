@@ -2,6 +2,12 @@ param(
     [string]$partnerId
 )
 
+# Validate partnerId is a 6-8 digit number
+if ($partnerId -notmatch '^\d{6,8}$') {
+    Write-Error "Partner ID must be a 6-8 digit number"
+    exit 1
+}
+
 Write-Output "Adding Azure CLI extension 'managementpartner'..."
 az extension add --name managementpartner
 
