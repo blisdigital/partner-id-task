@@ -1,0 +1,14 @@
+{
+    "name": "partner-id-task",
+    "version": "1.0.0",
+    "description": "Azure DevOps Pipeline task to set Partner ID",
+    "main": "check_and_set_partnerid.ps1",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "azure-pipelines-task-lib": "^3.1.0"
+    }
+}

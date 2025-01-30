@@ -1,6 +1,8 @@
-param(
-    [string]$partnerId
-)
+[CmdletBinding()]
+param()
+
+# Get input from task
+$partnerId = Get-VstsInput -Name "partnerId" -Require
 
 # Validate partnerId is a 6-8 digit number
 if ($partnerId -notmatch '^\d{6,8}$') {

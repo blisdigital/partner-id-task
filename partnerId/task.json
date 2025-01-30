@@ -1,0 +1,35 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "partner-id-task",
+    "name": "PartnerIdTask",
+    "friendlyName": "Set Azure Partner ID",
+    "description": "Sets or updates the Azure Partner ID for ARM deployments",
+    "helpMarkDown": "Task requires Azure CLI to be installed on the agent",
+    "category": "Deploy",
+    "author": "Your Name",
+    "version": {
+        "Major": 1,
+        "Minor": 0,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Set Partner ID",
+    "inputs": [
+        {
+            "name": "partnerId",
+            "type": "string",
+            "label": "Partner ID",
+            "required": true,
+            "helpMarkDown": "The Partner ID (6-8 digits) to set for ARM deployments"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "check_and_set_partnerid.ps1"
+        }
+    },
+    "prejobexecution": {
+        "PowerShell3": {
+            "target": "check_and_set_partnerid.ps1"
+        }
+    }
+}
