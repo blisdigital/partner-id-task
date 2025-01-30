@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "partner-id-task",
-    "name": "Azure Partner ID Task",
+    "name": "Microsoft Partner ID (MPN ID) Task",
     "version": "1.0.0",
     "publisher": "your-publisher",
     "targets": [
@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Task to set Azure Partner ID for ARM deployments",
+    "description": "Task to set Microsoft Partner ID (MPN ID) for ARM deployments",
     "categories": [
         "Azure Pipelines"
     ],

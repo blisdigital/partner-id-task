@@ -1,6 +1,6 @@
-# Azure Partner ID Task
+# Microsoft Partner ID (MPN ID) Task
 
-This Azure DevOps Pipeline task sets or updates the Azure Partner ID for ARM deployments.
+This Azure DevOps Pipeline task sets or updates the Microsoft Partner ID (MPN ID) for ARM deployments.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ This Azure DevOps Pipeline task sets or updates the Azure Partner ID for ARM dep
 steps:
 - task: PartnerIdTask@1
   inputs:
-    partnerId: '123456' # Your 6-8 digit partner ID
+    partnerId: '123456' # Your 6-8 digit Microsoft Partner ID (MPN ID)
   env:
     AZURE_SUBSCRIPTION: $(azureSubscription) # Name of your Azure service connection
 ```

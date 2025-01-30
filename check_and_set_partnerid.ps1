@@ -6,30 +6,30 @@ $partnerId = Get-VstsInput -Name "partnerId" -Require
 
 # Validate partnerId is a 6-8 digit number
 if ($partnerId -notmatch '^\d{6,8}$') {
-    Write-Error "Partner ID must be a 6-8 digit number"
+    Write-Error "Microsoft Partner ID (MPN ID) must be a 6-8 digit number"
     exit 1
 }
 
 Write-Output "Adding Azure CLI extension 'managementpartner'..."
 az extension add --name managementpartner
 
-Write-Output "Checking and setting Partner ID..."
+Write-Output "Checking and setting Microsoft Partner ID (MPN ID)..."
 try {
     # Execute the command and capture the JSON output
     $response = az managementpartner show | ConvertFrom-Json
     
     if ($response -and $response.partnerId) {
         if ($response.partnerId -eq $partnerId) {
-            Write-Output "Partner ID already set. Nothing to do"
+            Write-Output "Microsoft Partner ID (MPN ID) already set. Nothing to do"
         } else {
-            Write-Output "Partner ID mismatch. Updating..."
+            Write-Output "Microsoft Partner ID (MPN ID) mismatch. Updating..."
             az managementpartner create --partner-id $partnerId
         }
     } else {
-        Write-Output "No partner ID found. Creating new partner ID..."
+        Write-Output "No Microsoft Partner ID (MPN ID) found. Creating new Microsoft Partner ID (MPN ID)..."
         az managementpartner create --partner-id $partnerId
     }
 } catch {
-    Write-Output "Error encountered. Creating new partner ID..."
+    Write-Output "Error encountered. Creating new Microsoft Partner ID (MPN ID)..."
     az managementpartner create --partner-id $partnerId
 }
