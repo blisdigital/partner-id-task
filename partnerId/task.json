@@ -21,6 +21,13 @@
             "label": "Partner ID",
             "required": true,
             "helpMarkDown": "The Microsoft Partner ID (MPN ID) (6-8 digits) to set for ARM deployments"
+        },
+        {
+            "name": "azureServiceConnection",
+            "type": "connectedService:AzureRM",
+            "label": "Azure Subscription",
+            "required": true,
+            "helpMarkDown": "Select the Azure Resource Manager subscription for the deployment"
         }
     ],
     "execution": {

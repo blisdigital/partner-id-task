@@ -13,7 +13,7 @@ if (Test-Path $modulePath) {
 # Initialize Azure CLI connection
 try {
     Write-Output "Initializing Azure CLI connection..."
-    $endpoint = Get-VstsEndpoint -Name $env:AZURE_SUBSCRIPTION -Require
+    $endpoint = Get-VstsEndpoint -Name (Get-VstsInput -Name "azureServiceConnection" -Require)
     $subscriptionId = $endpoint.Data.subscriptionId
     $tenantId = $endpoint.Auth.Parameters.tenantid
     $clientId = $endpoint.Auth.Parameters.serviceprincipalid 
