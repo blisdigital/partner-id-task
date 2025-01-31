@@ -13,6 +13,17 @@
     "categories": [
         "Azure Pipelines"
     ],
+    "tags": [
+        "Azure",
+        "Partner",
+        "MPN",
+        "PAL",
+        "Partner Admin Link",
+        "Service Principal",
+        "Partner ID",
+        "Microsoft Partner Network"
+    ],
+    "public": true,
     "icons": {
         "default": "images/extension-icon.png"
     },
