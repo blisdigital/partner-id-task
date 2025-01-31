@@ -4,9 +4,10 @@
     "name": "PartnerIdTask",
     "friendlyName": "Set Microsoft Partner ID for PAL",
     "description": "Creates or updates the Microsoft Partner ID (MPN ID) for Partner Admin Link (PAL) of the Service Principal. For usage in Bicep/ARM deployments",
-    "helpMarkDown": "Task requires Azure CLI to be installed on the agent",
+    "helpMarkDown": "Task requires Azure CLI to be installed on the agent and an Azure service connection",
     "category": "Deploy",
     "author": "Blis Digital",
+    "demands": ["az"],
     "version": {
         "Major": 1,
         "Minor": 0,

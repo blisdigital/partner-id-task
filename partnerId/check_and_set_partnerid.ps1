@@ -10,6 +10,35 @@ if (Test-Path $modulePath) {
     exit 1
 }
 
+# Initialize Azure CLI connection
+try {
+    Write-Output "Initializing Azure CLI connection..."
+    $endpoint = Get-VstsEndpoint -Name $env:AZURE_SUBSCRIPTION -Require
+    $subscriptionId = $endpoint.Data.subscriptionId
+    $tenantId = $endpoint.Auth.Parameters.tenantid
+    $clientId = $endpoint.Auth.Parameters.serviceprincipalid 
+    $clientSecret = $endpoint.Auth.Parameters.serviceprincipalkey
+
+    # Login to Azure
+    $env:AZURE_CLIENT_ID = $clientId
+    $env:AZURE_CLIENT_SECRET = $clientSecret
+    $env:AZURE_TENANT_ID = $tenantId
+    az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
+    az account set --subscription $subscriptionId
+} catch {
+    Write-Error "Failed to initialize Azure CLI connection: $_"
+    exit 1
+}
+
+# Verify Azure CLI is available
+try {
+    $azVersion = az version
+    Write-Output "Azure CLI version: $azVersion"
+} catch {
+    Write-Error "Azure CLI is not installed or not accessible"
+    exit 1
+}
+
 # Get input from task
 $partnerId = Get-VstsInput -Name "partnerId" -Require
 

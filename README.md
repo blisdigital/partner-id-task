@@ -23,8 +23,10 @@ steps:
   inputs:
     partnerId: '123456' # Your 6-8 digit Microsoft Partner ID (MPN ID)
   env:
-    AZURE_SUBSCRIPTION: $(azureSubscription) # Name of your Azure service connection
+    AZURE_SUBSCRIPTION: $(azureServiceConnection) # Name of your Azure service connection
 ```
+
+Note: Make sure your Azure service connection has sufficient permissions to manage Partner IDs.
 
 The task will:
 
