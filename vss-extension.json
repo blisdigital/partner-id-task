@@ -23,8 +23,18 @@
         {
             "path": "partnerId/ps_modules/VstsTaskSdk",
             "packagePath": "partnerId/ps_modules/VstsTaskSdk"
+        },
+        {
+            "path": "overview.md",
+            "addressable": true,
+            "contentType": "text/markdown"
         }
     ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        }
+    },
     "contributions": [
         {
             "id": "partner-id-task",
