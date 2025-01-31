@@ -45,6 +45,25 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - uses: actions/checkout@v3
+    
+    - name: Update version numbers
+      run: |
+        # Extract version from release tag (without v prefix)
+        VERSION=${GITHUB_REF#refs/tags/}
+        
+        # Split version into parts
+        IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+        
+        # Update task.json
+        jq --arg major "$MAJOR" --arg minor "$MINOR" --arg patch "$PATCH" \
+          '.version.Major = ($major|tonumber) | .version.Minor = ($minor|tonumber) | .version.Patch = ($patch|tonumber)' \
+          partnerId/task.json > temp.json && mv temp.json partnerId/task.json
+        
+        # Update vss-extension.json
+        jq --arg version "$VERSION" \
+          '.version = $version' \
+          vss-extension.json > temp.json && mv temp.json vss-extension.json
     - name: Download artifact
       uses: actions/download-artifact@v3
       with:
