@@ -31,12 +31,12 @@
         }
     ],
     "execution": {
-        "PowerShell3": {
+        "PowerShell": {
             "target": "check_and_set_partnerid.ps1"
         }
     },
     "prejobexecution": {
-        "PowerShell3": {
+        "PowerShell": {
             "target": "check_and_set_partnerid.ps1"
         }
     }
