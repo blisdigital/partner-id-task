@@ -1,0 +1,67 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+        
+    - name: Install dependencies
+      run: |
+        cd partnerId
+        npm install
+        
+    - name: Install TFX-CLI
+      run: npm install -g tfx-cli
+        
+    - name: Build extension
+      run: |
+        # Create VSIX package
+        tfx extension create --manifest-globs vss-extension.json --output-path ./dist
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: vsix-package
+        path: "dist/*.vsix"
+
+  publish:
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: vsix-package
+        path: dist
+
+    - name: Publish to Marketplace
+      if: github.event_name == 'release'
+      run: |
+        npx tfx-cli extension publish --vsix dist/*.vsix --token ${{ secrets.AZURE_DEVOPS_PAT }}
+
+    - name: Upload to GitHub Release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/*.vsix
+        asset_name: partner-id-task-${{ github.event.release.tag_name }}.vsix
+        asset_content_type: application/octet-stream
