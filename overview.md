@@ -29,7 +29,7 @@ This task helps Microsoft partners set up Partner Admin Link (PAL) by associatin
 
 ```yaml
 steps:
-- task: PartnerIdTask@1
+- task: PartnerIdTask@2
   inputs:
     partnerId: '123456' # Your 6-8 digit Microsoft Partner ID (MPN ID)
     azureServiceConnection: 'My-Azure-Connection' # Name of your Azure service connection

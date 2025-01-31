@@ -19,7 +19,7 @@ PAL enables Microsoft to identify and recognize partners who drive Azure custome
 
 ```yaml
 steps:
-- task: PartnerIdTask@1
+- task: PartnerIdTask@2
   inputs:
     partnerId: '123456' # Your 6-8 digit Microsoft Partner ID (MPN ID)
     azureServiceConnection: 'My-Azure-Connection' # Name of your Azure service connection
