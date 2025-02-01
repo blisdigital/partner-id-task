@@ -8,7 +8,8 @@ PAL enables Microsoft to identify and recognize partners who drive Azure custome
 
 ## Prerequisites
 
-- Azure CLI must be installed on the build agent
+- Azure CLI (version 2.30.0 or higher) must be installed on the build agent
+- Azure CLI managementpartner extension will be installed automatically if needed
 - PowerShell (Windows PowerShell or PowerShell Core for cross-platform) must be installed on the build agent
 - Azure Service Connection must be configured in your pipeline
 

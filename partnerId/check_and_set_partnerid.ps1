@@ -30,12 +30,33 @@ try {
     exit 1
 }
 
-# Verify Azure CLI is available
+# Verify Azure CLI version
 try {
-    $azVersion = az version
-    Write-Output "Azure CLI version: $azVersion"
+    $azVersionJson = az version | ConvertFrom-Json
+    $cliVersion = $azVersionJson.'azure-cli'
+    Write-Output "Azure CLI version: $cliVersion"
+    
+    # Convert version string to version object for comparison
+    $minVersion = [System.Version]"2.30.0"
+    $currentVersion = [System.Version]$cliVersion
+    
+    if ($currentVersion -lt $minVersion) {
+        Write-Error "Azure CLI version $cliVersion is below minimum required version $minVersion. Please upgrade Azure CLI."
+        exit 1
+    }
+
+    # Check managementpartner extension
+    Write-Output "Checking Azure CLI extension 'managementpartner'..."
+    $extOutput = az extension show --name managementpartner 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Output "Management Partner extension not found. Installing..."
+        az extension add --name managementpartner
+    } else {
+        $extVersion = ($extOutput | ConvertFrom-Json).version
+        Write-Output "Management Partner extension version: $extVersion"
+    }
 } catch {
-    Write-Error "Azure CLI is not installed or not accessible"
+    Write-Error "Azure CLI is not installed or not accessible: $($_.Exception.Message)"
     exit 1
 }
 
@@ -48,8 +69,6 @@ if ($partnerId -notmatch '^\d{6,8}$') {
     exit 1
 }
 
-Write-Output "Adding Azure CLI extension 'managementpartner'..."
-az extension add --name managementpartner
 
 Write-Output "Checking and setting Microsoft Partner ID (MPN ID)..."
 try {
