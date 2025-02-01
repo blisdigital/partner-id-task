@@ -7,7 +7,7 @@
     "helpMarkDown": "Task requires Azure CLI to be installed on the agent and an Azure service connection",
     "category": "Deploy",
     "author": "Blis Digital",
-    "demands": ["az"],
+    "demands": ["az", "powershell"],
     "version": {
         "Major": 2,
         "Minor": 0,

@@ -9,6 +9,7 @@ PAL enables Microsoft to identify and recognize partners who drive Azure custome
 ## Prerequisites
 
 - Azure CLI must be installed on the build agent
+- PowerShell (Windows PowerShell or PowerShell Core for cross-platform) must be installed on the build agent
 - Azure Service Connection must be configured in your pipeline
 
 ## Usage
