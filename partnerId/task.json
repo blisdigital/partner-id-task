@@ -11,7 +11,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 4
     },
     "instanceNameFormat": "Set Microsoft Partner ID (MPN ID)",
     "inputs": [
@@ -31,12 +31,12 @@
         }
     ],
     "execution": {
-        "PowerShell": {
+        "PowerShell3": {
             "target": "check_and_set_partnerid.ps1"
         }
     },
     "prejobexecution": {
-        "PowerShell": {
+        "PowerShell3": {
             "target": "check_and_set_partnerid.ps1"
         }
     }
