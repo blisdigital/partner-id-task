@@ -54,20 +54,47 @@ az extension add --name managementpartner
 Write-Output "Checking and setting Microsoft Partner ID (MPN ID)..."
 try {
     # Execute the command and capture the JSON output
-    $response = az managementpartner show | ConvertFrom-Json
+    $showOutput = az managementpartner show 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning "Error checking existing Partner ID: $showOutput"
+        throw
+    }
+    
+    $response = $showOutput | ConvertFrom-Json
     
     if ($response -and $response.partnerId) {
         if ($response.partnerId -eq $partnerId) {
-            Write-Output "Microsoft Partner ID (MPN ID) already set. Nothing to do"
+            Write-Output "Microsoft Partner ID (MPN ID) already set to $partnerId. Nothing to do."
         } else {
-            Write-Output "Microsoft Partner ID (MPN ID) mismatch. Updating..."
-            az managementpartner create --partner-id $partnerId
+            Write-Output "Microsoft Partner ID (MPN ID) mismatch (current: $($response.partnerId), new: $partnerId). Updating..."
+            $updateOutput = az managementpartner create --partner-id $partnerId 2>&1
+            if ($LASTEXITCODE -ne 0) {
+                Write-Error "Failed to update Partner ID: $updateOutput"
+                exit 1
+            }
+            Write-Output "Successfully updated Partner ID to $partnerId"
         }
     } else {
         Write-Output "No Microsoft Partner ID (MPN ID) found. Creating new Microsoft Partner ID (MPN ID)..."
-        az managementpartner create --partner-id $partnerId
+        $createOutput = az managementpartner create --partner-id $partnerId 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to create Partner ID: $createOutput"
+            exit 1
+        }
+        Write-Output "Successfully created Partner ID $partnerId"
     }
 } catch {
-    Write-Output "Error encountered. Creating new Microsoft Partner ID (MPN ID)..."
-    az managementpartner create --partner-id $partnerId
+    Write-Warning "Error details: $($_.Exception.Message)"
+    Write-Output "Attempting to create new Microsoft Partner ID (MPN ID)..."
+    try {
+        $createOutput = az managementpartner create --partner-id $partnerId 2>&1
+        if ($LASTEXITCODE -ne 0) {
+            Write-Error "Failed to create Partner ID: $createOutput"
+            exit 1
+        }
+        Write-Output "Successfully created Partner ID $partnerId"
+    } catch {
+        Write-Error "Failed to set Partner ID after multiple attempts: $($_.Exception.Message)"
+        exit 1
+    }
 }
