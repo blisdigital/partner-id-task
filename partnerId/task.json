@@ -20,7 +20,11 @@
             "type": "string",
             "label": "Partner ID",
             "required": true,
-            "helpMarkDown": "The Microsoft Partner ID (MPN ID) (6-8 digits) to set for ARM deployments"
+            "helpMarkDown": "The Microsoft Partner ID (MPN ID) (6-8 digits) to set for ARM deployments",
+            "validation": {
+                "pattern": "^\\d{6,8}$",
+                "message": "Partner ID must be a 6-8 digit number"
+            }
         },
         {
             "name": "azureServiceConnection",
