@@ -2,7 +2,7 @@
 param()
 
 # Import VstsTask module
-$modulePath = Join-Path $PSScriptRoot "ps_modules\VstsTaskSdk\VstsTaskSdk.psd1"
+$modulePath = Join-Path $PSScriptRoot ([System.IO.Path]::Combine("ps_modules", "VstsTaskSdk", "VstsTaskSdk.psd1"))
 if (Test-Path $modulePath) {
     Import-Module $modulePath -Verbose
 } else {

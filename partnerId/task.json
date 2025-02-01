@@ -32,12 +32,22 @@
     ],
     "execution": {
         "PowerShell3": {
-            "target": "check_and_set_partnerid.ps1"
+            "target": "check_and_set_partnerid.ps1",
+            "platforms": ["windows"]
+        },
+        "PowerShell": {
+            "target": "check_and_set_partnerid.ps1",
+            "platforms": ["linux", "darwin"]
         }
     },
     "prejobexecution": {
         "PowerShell3": {
-            "target": "check_and_set_partnerid.ps1"
+            "target": "check_and_set_partnerid.ps1",
+            "platforms": ["windows"]
+        },
+        "PowerShell": {
+            "target": "check_and_set_partnerid.ps1",
+            "platforms": ["linux", "darwin"]
         }
     }
 }
