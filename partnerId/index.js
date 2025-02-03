@@ -43,14 +43,9 @@ async function run() {
         await execAsync(`az login --service-principal -u ${clientId} -p ${clientSecret} --tenant ${tenantId}`);
         await execAsync(`az account set --subscription ${subscriptionId}`);
 
-        // Check and install managementpartner extension
-        console.log('Checking Azure CLI extension...');
-        try {
-            await execAsync('az extension show --name managementpartner');
-        } catch {
-            console.log('Installing managementpartner extension...');
-            await execAsync('az extension add --name managementpartner');
-        }
+        // (Re-)Install managementpartner extension
+        console.log('Installing managementpartner extension...');
+        await execAsync('az extension add --name managementpartner');
 
         // Check existing Partner ID
         console.log('Checking existing Partner ID...');

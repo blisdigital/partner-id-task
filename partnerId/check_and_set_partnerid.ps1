@@ -45,16 +45,8 @@ try {
         exit 1
     }
 
-    # Check managementpartner extension
-    Write-Output "Checking Azure CLI extension 'managementpartner'..."
-    $extOutput = az extension show --name managementpartner 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        Write-Output "Management Partner extension not found. Installing..."
-        az extension add --name managementpartner
-    } else {
-        $extVersion = ($extOutput | ConvertFrom-Json).version
-        Write-Output "Management Partner extension version: $extVersion"
-    }
+    # Add managementpartner extension if not already installed
+    az extension add --name managementpartner
 } catch {
     Write-Error "Azure CLI is not installed or not accessible: $($_.Exception.Message)"
     exit 1

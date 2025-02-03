@@ -11,7 +11,7 @@
     "version": {
         "Major": 2,
         "Minor": 0,
-        "Patch": 4
+        "Patch": 6
     },
     "instanceNameFormat": "Set Microsoft Partner ID (MPN ID)",
     "inputs": [
@@ -39,9 +39,8 @@
             "target": "check_and_set_partnerid.ps1",
             "platforms": ["windows"]
         },
-        "PowerShell": {
-            "target": "check_and_set_partnerid.ps1",
-            "platforms": ["linux", "darwin"]
+        "Node20_1": {
+            "target": "index.js"
         }
     },
     "prejobexecution": {
@@ -49,9 +48,8 @@
             "target": "check_and_set_partnerid.ps1",
             "platforms": ["windows"]
         },
-        "PowerShell": {
-            "target": "check_and_set_partnerid.ps1",
-            "platforms": ["linux", "darwin"]
+        "Node20_1": {
+            "target": "index.js"
         }
     }
 }
